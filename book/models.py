@@ -10,6 +10,12 @@ class BookModel(models.Model):
     description = models.TextField()
     is_booked = models.ForeignKey(UserModel, on_delete=models.CASCADE, null=True, blank=True)
 
+    def __str__(self):
+        return self.title
+
+    def get_comments(self):
+        return self.comments.order_by('-pk')
+
 
 class CommentModel(models.Model):
     user = models.ForeignKey(UserModel, on_delete=models.CASCADE, related_name='user_comments',

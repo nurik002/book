@@ -7,6 +7,7 @@ from book.models import BookModel, CommentModel
 class ProductAdminModel(admin.ModelAdmin):
     list_display = ['title', 'is_booked']
     search_fields = ['title']
+    readonly_fields = ['is_booked']
 
 
 @admin.register(CommentModel)

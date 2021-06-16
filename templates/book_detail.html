@@ -21,10 +21,19 @@
 
                     </div>
                 </div>
+                <div>
+                    {% for get_comment in object.get_comments %}
+                        <div>
+                            {{ get_comment.user }}
+                            {{ get_comment.text }}
+                        </div>
+                    {% endfor %}
+
+                </div>
                 <form action="{% url 'comment' pk=object.pk %}" method="post" class="mt-5">
                     {% csrf_token %}
                     <div class="form-group">
-                                        <textarea name="comment" rows="10" class="form-control"
+                                        <textarea name="text" rows="10" class="form-control"
                                                   placeholder="Your comment"></textarea>
                     </div>
                     <button type="submit" class="btn btn-danger mt-2">Qoshish</button>
