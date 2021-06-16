@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{% url 'home' %}">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only"></span></a>
+            </li>
+            {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="btn btn-info" href="{% url 'auth_logout' %}">Logout<span class="sr-only"></span></a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="btn btn-info" href="{% url 'auth_login' %}">Sing in<span class="sr-only"></span></a>
+                </li>
+            {% endif %}
+        </ul>
+        <div class="d-le">
+            <form class="form-inline my-2 my-lg-0" method="get" action="{% url 'home' %}">
+                {% csrf_token %}
+                <input name="q" value="{{ request.GET.q }}" class="form-control mr-sm-2" type="search"
+                       placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>

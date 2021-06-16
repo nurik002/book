@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block title %}
+    book_detail
+{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-9 mx-auto mb-5">
+                <div class="border-bottom">
+                    <a href="#" class="d-block"><h1 class="text-dark "
+                                                    style="font-weight: 600;">{{ object.title }}</h1>
+                    </a>
+                    <img class="w-100 my-4"
+                         src="{{ object.image.url }}" alt="">
+                    <p class="text-secondary" style="line-height: 1.8;">{{ object.description|safe }}</p>
+                    <div class="d-flex align-items-center my-4">
+
+                    </div>
+                </div>
+                <form action="{% url 'comment' pk=object.pk %}" method="post" class="mt-5">
+                    {% csrf_token %}
+                    <div class="form-group">
+                                        <textarea name="comment" rows="10" class="form-control"
+                                                  placeholder="Your comment"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-danger mt-2">Qoshish</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
